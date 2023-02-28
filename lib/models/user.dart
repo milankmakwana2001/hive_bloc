@@ -15,4 +15,11 @@ class User extends HiveObject {
 
   @HiveField(3)
   late String degree;
+
+  // User({
+  //   required this.name,
+  //   required this.id,
+  //   required this.age,
+  //   required this.degree,
+  // });
 }

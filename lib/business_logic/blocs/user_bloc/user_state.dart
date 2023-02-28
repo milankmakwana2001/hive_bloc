@@ -20,7 +20,14 @@ class Success extends UserState{
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
+}
 
+class GetSuccess extends UserState{
+  dynamic userList;
+  GetSuccess(this.userList);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [userList];
 }
 
 
