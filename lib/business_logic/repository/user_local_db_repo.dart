@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:hive/hive.dart';
 import 'package:hive_bloc/core/app_strings.dart';
-import 'package:hive_bloc/models/user.dart';
+import 'package:hive_bloc/models/user/user.dart';
 
 class UserLocalDBRepo {
   late Box<User> _user;

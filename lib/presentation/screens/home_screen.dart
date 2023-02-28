@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_bloc/business_logic/blocs/user_bloc/user_bloc.dart';
-import 'package:hive_bloc/models/user.dart';
+import 'package:hive_bloc/business_logic/cubits/image_cubit/image_cubit.dart';
+import 'package:hive_bloc/models/user/user.dart';
+import 'package:hive_bloc/presentation/screens/images_list_screen.dart';
 import 'package:hive_bloc/presentation/screens/user_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,11 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late UserBloc _userBloc;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController idController = TextEditingController();
@@ -31,7 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
     _userBloc = context.read<UserBloc>();
 
     return Scaffold(
-      appBar: AppBar(
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()async{
+          await context.read<ImageCubit>().imagePicker();
+        },
+        child: Icon(Icons.wallet_rounded),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+       appBar: AppBar(
         title: Text(
           'Hive Local DB',
         ),
@@ -49,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.list_alt,
             ),
           ),
+          IconButton(onPressed: (){
+            Navigator.of(context).pushNamed(ImagesListScreen.pageRoute);
+          }, icon:Icon(Icons.image_rounded,),),
         ],
       ),
       body: ListView(
@@ -56,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           buildTextFieldContainer(
             'Name',
             controller: nameController,
+            isAutoFocus: true,
           ),
           buildTextFieldContainer(
             'Id',
@@ -118,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Container buildTextFieldContainer(
     String label, {
     bool isNum = false,
+    bool isAutoFocus = false,
     required TextEditingController controller,
   }) {
     return Container(
@@ -126,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
         horizontal: 10,
       ),
       child: TextField(
+        autofocus: isAutoFocus ? true : false,
         controller: controller,
         keyboardType: isNum ? TextInputType.number : TextInputType.name,
         decoration: InputDecoration(

@@ -34,8 +34,8 @@ class _UserListScreenState extends State<UserListScreen> {
               );
             }
             return ListView.builder(
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.symmetric(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),
               itemBuilder: (context, index) {

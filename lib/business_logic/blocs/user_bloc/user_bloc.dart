@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_bloc/business_logic/repository/user_local_db_repo.dart';
-import 'package:hive_bloc/models/user.dart';
+import 'package:hive_bloc/models/user/user.dart';
 
 part 'user_event.dart';
 
